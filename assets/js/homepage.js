@@ -10,5 +10,25 @@ var getUserRepos = function(user) {
   });
  
 };
-  
-  getUserRepos();
+
+//variables to store a reference to the <form> element
+var userFormEl = document.querySelector("#user-form");
+var nameInputEl = document.querySelector("#username");
+
+//function to be executed upon form submission browser event
+var formSubmitHandler = function(event) {
+  event.preventDefault();
+  //get value from input element
+  var username = nameInputEl.value.trim();
+
+  if (username) {
+    getUserRepos(username);
+    nameInputEl.value = "";
+  } else {
+    alert ("PLease enter a GitHub username");
+  }
+  console.log(event);
+};
+
+//add submit event listener to the userFormEl
+userFormEl.addEventListener("submit", formSubmitHandler);
